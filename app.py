@@ -13,9 +13,9 @@ def index():
     return "<p>Welcome the Cop Classification API</p>"
 
 
-DEVICE = 'cuda'
+DEVICE = 'cpu'
 # Load the pre-trained model
-model = torch.load("models/Cop_ClassifierV3_20_epochs.pt").to(device=DEVICE)
+model = torch.load("models/Cop_ClassifierV3_20_epochs.pt", map_location='cpu').to(device=DEVICE)
 model.eval()
 
 # Define the transformation
