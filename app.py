@@ -7,6 +7,15 @@ import io
 
 app = Flask(__name__)
 CORS(app, resources={r"/predict": {"origins": ["http://localhost:3000", "https://advaithmalka.github.io/cop-classifier/"]}})
+def add_cors_headers(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    if request.method == 'OPTIONS':
+        response.headers['Access-Control-Allow-Methods'] = 'DELETE, GET, POST, PUT'
+        headers = request.headers.get('Access-Control-Request-Headers')
+        if headers:
+            response.headers['Access-Control-Allow-Headers'] = headers
+    return response
+app.after_request(add_cors_headers)
 
 @app.route("/")
 def index():
