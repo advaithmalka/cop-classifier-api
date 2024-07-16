@@ -13,7 +13,7 @@ def index():
     return "<p>Welcome the Cop Classification API</p>"
 
 
-DEVICE = 'cpu'
+DEVICE = 'cuda'
 # Load the pre-trained model
 model = torch.load("models/Cop_ClassifierV3_20_epochs.pt").to(device=DEVICE)
 model.eval()
